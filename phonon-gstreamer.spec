@@ -51,12 +51,11 @@ rm -fr %buildroot
 %makeinstall_std -C build
 
 # Make a nice icon
-install -D -m 0644 %{_sourcedir}/%{name}-gstreamer.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}-gstreamer.svg
+install -D -m 0644 %{_sourcedir}/%{name}.svg %{buildroot}%{_datadir}/icons/hicolor/scalable/apps/%{name}.svg
 for size in 16 22 32 48 64 128; do
   mkdir -p %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps
-  convert -geometry ${size}x${size} %{_sourcedir}/%{name}-gstreamer.svg %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/%{name}-gstreamer.png
+  convert -geometry ${size}x${size} %{_sourcedir}/%{name}.svg %{buildroot}%{_datadir}/icons/hicolor/${size}x${size}/apps/%{name}.png
 done
 
 %clean
 rm -rf "%{buildroot}"
-
