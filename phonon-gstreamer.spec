@@ -16,6 +16,7 @@ BuildRequires: libgstreamer-plugins-base-devel
 BuildRequires: imagemagick
 BuildRequires: phonon-devel >= 2:4.4.4
 BuildRequires: kde4-macros
+BuildRequires: automoc4
 Requires: gstreamer0.10-plugins-good
 Requires: gstreamer0.10-plugins-base
 Suggests: gstreamer0.10-ffmpeg
