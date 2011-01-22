@@ -7,7 +7,7 @@ Url: http://phonon.kde.org/
 License: LGPLv2+
 Group: Sound
 BuildRoot: %{_tmppath}/%{name}-%{version}-build
-Source0: ftp://ftp.kde.org/pub/kde/stable/phonon/%version/phonon-backend-gstreamer-%version.tar.bz2
+Source0: ftp://ftp.kde.org/pub/kde/stable/phonon/phonon-backend-gstreamer/%version/phonon-backend-gstreamer-%version.tar.bz2
 Source1: %{name}.svg
 Patch2: phonon-gstreamer-4.4.4-fix-seekable-query-failed.patch
 Patch5: phonon-gstreamer-4.4.4-use-decodebin.patch
@@ -15,15 +15,15 @@ BuildRequires: libgstreamer-devel
 BuildRequires: libgstreamer-plugins-base-devel
 BuildRequires: imagemagick
 BuildRequires: phonon-devel >= 2:4.4.4
-BuildRequires: imagemagick
+BuildRequires: kde4-macros
 Requires: gstreamer0.10-plugins-good
 Requires: gstreamer0.10-plugins-base
 Suggests: gstreamer0.10-ffmpeg
 Suggests: gstreamer0.10-soup
 Suggests: gstreamer0.10-pulse
 %if %mdkversion >= 201000
-Obsoletes:      arts < %epoch_arts:1.5.10-9
-Obsoletes:      arts3 < %epoch_arts:1.5.10-9
+Obsoletes:      arts < 30000001:1.5.10-9
+Obsoletes:      arts3 < 30000001:1.5.10-9
 %endif
 Provides: phonon-backend
 
@@ -32,7 +32,6 @@ GStreamer backend to Phonon.
 
 %files
 %defattr(-,root,root)
-%dir %_kde_libdir/kde4/plugins/phonon_backend
 %_kde_libdir/kde4/plugins/phonon_backend/phonon_gstreamer.so
 %_kde_datadir/kde4/services/phononbackends/gstreamer.desktop
 %_datadir/icons/hicolor/*
