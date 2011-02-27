@@ -1,7 +1,7 @@
 Name: phonon-gstreamer
 Summary: GStreamer backend to Phonon
 Version: 4.4.4
-Release: %mkrel 2
+Release: %mkrel 3
 Epoch: 2
 Url: http://phonon.kde.org/
 License: LGPLv2+
