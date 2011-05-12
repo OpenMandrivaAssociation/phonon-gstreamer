@@ -1,19 +1,19 @@
 Name: phonon-gstreamer
 Summary: GStreamer backend to Phonon
-Version: 4.5.0
-Release: %mkrel 2
+Version: 4.5.1
+Release: %mkrel 1
 Epoch: 2
 Url: http://phonon.kde.org/
 License: LGPLv2+
 Group: Sound
 BuildRoot: %{_tmppath}/%{name}-%{version}-build
 Source0: ftp://ftp.kde.org/pub/kde/stable/phonon/phonon-backend-gstreamer/%version/phonon-backend-gstreamer-%version.tar.bz2
-Patch2: phonon-gstreamer-4.4.4-fix-seekable-query-failed.patch
+Patch2: phonon-gstreamer-4.5.1-fix-seekable-query-failed.patch
 Patch5: phonon-gstreamer-4.4.4-use-decodebin.patch
 BuildRequires: libgstreamer-devel
 BuildRequires: libgstreamer-plugins-base-devel
 BuildRequires: imagemagick
-BuildRequires: phonon-devel >= 2:4.4.4
+BuildRequires: phonon-devel >= 2:4.5.0
 BuildRequires: kde4-macros
 BuildRequires: automoc4
 Requires: gstreamer0.10-plugins-good
