@@ -45,9 +45,3 @@ GStreamer backend to Phonon.
 %install
 rm -fr %buildroot
 %makeinstall_std -C build
-
-# Make a nice icon
-for size in 16 22 32 48 64 128; do
-  mkdir -p %{buildroot}%{_iconsdir}/hicolor/${size}x${size}/apps
-  convert -geometry ${size}x${size} %{buildroot}%{_iconsdir}/hicolor/scalable/apps/%{name}.svgz %{buildroot}%{_iconsdir}/hicolor/${size}x${size}/apps/%{name}.png
-done
