@@ -1,12 +1,12 @@
 Name:		phonon-gstreamer
 Summary:	GStreamer backend to Phonon
 Group:		Sound
-Version:	4.5.90
+Version:	4.6.0
 Release:	1
 Epoch:		2
 URL:		http://phonon.kde.org/
 License:	LGPLv2+
-Source0:	ftp://ftp.kde.org/pub/kde/unstable/phonon/phonon-backend-gstreamer/4.5.90/src/phonon-backend-gstreamer-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/phonon/phonon-backend-gstreamer/4.5.90/src/phonon-backend-gstreamer-%{version}.tar.xz
 
 BuildRequires: cmake
 BuildRequires: libgstreamer-devel
