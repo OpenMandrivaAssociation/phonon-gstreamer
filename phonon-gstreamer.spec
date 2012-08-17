@@ -1,7 +1,7 @@
 Name:		phonon-gstreamer
 Summary:	GStreamer backend to Phonon
 Group:		Sound
-Version:	4.6.0
+Version:	4.6.2
 Release:	1
 Epoch:		2
 URL:		http://phonon.kde.org/
