@@ -9,7 +9,6 @@ License:	LGPLv2+
 Source0:	ftp://ftp.kde.org/pub/kde/unstable/phonon/phonon-backend-gstreamer/%{version}/src/phonon-backend-gstreamer-%{version}.tar.xz
 Patch1:		phonon-4.4.3-flac_mimetype.patch
 Patch2:		phonon-backend-gstreamer-4.6.0-snapshot.patch
-Patch3:		phonon-backend-gstreamer-4.6.2-fix-multiple-drive.patch
 
 BuildRequires:	cmake
 BuildRequires:	imagemagick
