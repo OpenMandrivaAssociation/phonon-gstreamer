@@ -1,12 +1,12 @@
 Name:		phonon-gstreamer
 Summary:	GStreamer backend to Phonon
 Group:		Sound
-Version:	4.6.2
+Version:	4.6.3
 Release:	1
 Epoch:		2
 URL:		http://phonon.kde.org/
 License:	LGPLv2+
-Source0:	ftp://ftp.kde.org/pub/kde/unstable/phonon/phonon-backend-gstreamer/4.5.90/src/phonon-backend-gstreamer-%{version}.tar.xz
+Source0:	ftp://ftp.kde.org/pub/kde/unstable/phonon/phonon-backend-gstreamer/%{version}/src/phonon-backend-gstreamer-%{version}.tar.xz
 Patch1:		phonon-4.4.3-flac_mimetype.patch
 Patch2:		phonon-backend-gstreamer-4.6.0-snapshot.patch
 Patch3:		phonon-backend-gstreamer-4.6.2-fix-multiple-drive.patch
@@ -14,15 +14,15 @@ Patch3:		phonon-backend-gstreamer-4.6.2-fix-multiple-drive.patch
 BuildRequires:	cmake
 BuildRequires:	imagemagick
 BuildRequires:	automoc4
-BuildRequires:	pkgconfig(gstreamer-0.10)
-BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
+BuildRequires:	pkgconfig(gstreamer-1.0)
+BuildRequires:	pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires:	pkgconfig(phonon)
-Requires:	gstreamer0.10-plugins-good
-Requires:	gstreamer0.10-plugins-base
-Suggests:	gstreamer0.10-plugins-ugly
-Suggests:	gstreamer0.10-ffmpeg
-Suggests:	gstreamer0.10-soup
-Suggests:	gstreamer0.10-pulse
+Requires:	gstreamer1.0-plugins-good
+Requires:	gstreamer1.0-plugins-base
+Suggests:	gstreamer1.0-plugins-ugly
+Suggests:	gstreamer1.0-libav
+Suggests:	gstreamer1.0-soup
+Suggests:	gstreamer1.0-pulse
 Provides:	phonon-backend
 
 %description
