@@ -1,7 +1,7 @@
 Summary:	GStreamer backend to Phonon
 Name:		phonon-gstreamer
 Version:	4.7.0
-Release:	6
+Release:	7
 Epoch:		2
 License:	LGPLv2+
 Group:		Sound
