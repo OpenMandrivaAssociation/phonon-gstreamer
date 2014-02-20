@@ -1,7 +1,7 @@
 Summary:	GStreamer backend to Phonon
 Name:		phonon-gstreamer
 Version:	4.7.1
-Release:	1
+Release:	2
 Epoch:		2
 License:	LGPLv2+
 Group:		Sound
@@ -14,6 +14,9 @@ BuildRequires:	imagemagick
 BuildRequires:	pkgconfig(gstreamer-0.10)
 BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
 BuildRequires:	pkgconfig(phonon)
+# Yes, really...
+# The bit we need is the qt5_use_modules cmake macro.
+BuildRequires:	pkgconfig(Qt5Core)
 Requires:	gstreamer0.10-plugins-good
 Requires:	gstreamer0.10-plugins-base
 Suggests:	gstreamer0.10-plugins-bad
