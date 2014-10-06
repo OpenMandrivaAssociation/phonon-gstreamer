@@ -1,29 +1,28 @@
 Summary:	GStreamer backend to Phonon
 Name:		phonon-gstreamer
-Version:	4.7.1
-Release:	4
+Version:	4.8.0
+Release:	1
 Epoch:		2
 License:	LGPLv2+
 Group:		Sound
 Url:		http://phonon.kde.org/
-Source0:	ftp://ftp.kde.org/pub/kde/stable/phonon/phonon-backend-gstreamer/%{version}/src/phonon-backend-gstreamer-%{version}.tar.xz
-Patch0:		phonon-4.4.3-flac_mimetype.patch
+Source0:	ftp://ftp.kde.org/pub/kde/stable/phonon/phonon-backend-gstreamer/%{version}/phonon-backend-gstreamer-%{version}.tar.xz
 BuildRequires:	automoc4
 BuildRequires:	cmake
 BuildRequires:	imagemagick
-BuildRequires:	pkgconfig(gstreamer-0.10)
-BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10)
+BuildRequires:	pkgconfig(gstreamer-1.0)
+BuildRequires:	pkgconfig(gstreamer-plugins-base-1.0)
 BuildRequires:	pkgconfig(phonon)
 # Yes, really...
 # The bit we need is the qt5_use_modules cmake macro.
 BuildRequires:	pkgconfig(Qt5Core)
-Requires:	gstreamer0.10-plugins-good
-Requires:	gstreamer0.10-plugins-base
-Suggests:	gstreamer0.10-plugins-bad
-Suggests:	gstreamer0.10-plugins-ugly
-Suggests:	gstreamer0.10-ffmpeg
-Suggests:	gstreamer0.10-soup
-Requires:	gstreamer0.10-pulse
+Requires:	gstreamer1.0-plugins-good
+Requires:	gstreamer1.0-plugins-base
+Suggests:	gstreamer1.0-plugins-bad
+Suggests:	gstreamer1.0-plugins-ugly
+Suggests:	gstreamer1.0-libav
+Suggests:	gstreamer1.0-soup
+Requires:	gstreamer1.0-pulse
 Provides:	phonon-backend
 
 %description
