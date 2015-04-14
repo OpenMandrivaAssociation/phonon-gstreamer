@@ -1,4 +1,5 @@
 removed_sources:
   phonon-backend-gstreamer-4.7.1.tar.xz: 3077181380194add7160233d1d1cb28870dfc320
-sources:
   phonon-backend-gstreamer-4.8.0.tar.xz: b32996eca64639599372f2beed44561fe08b78a5
+sources:
+  phonon-backend-gstreamer-4.8.2.tar.xz: 9998ba3a002af09e1ba4072508d1813af1d1e5be
