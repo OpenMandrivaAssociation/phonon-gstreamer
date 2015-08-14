@@ -7,7 +7,7 @@ License:	LGPLv2.1+
 Group:		Sound
 Url:		http://phonon.kde.org/
 Source0:	ftp://ftp.kde.org/pub/kde/stable/phonon/phonon-backend-gstreamer/%{version}/src/phonon-backend-gstreamer-%{version}.tar.xz
-Patch0:		phonon-4.7.80-flac_mimetype.patch
+#Patch0:		phonon-4.7.80-flac_mimetype.patch
 BuildRequires:	automoc4
 BuildRequires:	cmake
 BuildRequires:	imagemagick
