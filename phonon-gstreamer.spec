@@ -30,7 +30,7 @@ BuildRequires:	pkgconfig(phonon4qt5)
 BuildRequires:	pkgconfig(Qt5OpenGL)
 BuildRequires:	pkgconfig(Qt5Core)
 Requires:	phonon-gstreamer-common
-Requires:	gstreamer%1.0-libav
+Requires:	gstreamer1.0-libav
 Requires:	gstreamer1.0-pulse
 Requires:	gstreamer1.0-plugins-bad
 Requires:	gstreamer1.0-plugins-base
