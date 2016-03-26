@@ -1,7 +1,7 @@
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
 Version:	4.8.2
-Release:	4
+Release:	5
 Epoch:		2
 License:	LGPLv2.1+
 Group:		Sound
