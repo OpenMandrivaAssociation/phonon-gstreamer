@@ -7,8 +7,9 @@ License:	LGPLv2.1+
 Group:		Sound
 Url:		http://phonon.kde.org/
 Source0:	ftp://ftp.kde.org/pub/kde/stable/phonon/phonon-backend-gstreamer/%{version}/src/phonon-backend-gstreamer-%{version}.tar.xz
-#Patch0:		phonon-4.7.80-flac_mimetype.patch
-Patch1:		phonon-gstreamer-gst15_include_dirs.patch
+# (tpg) patches from upstream git
+Patch1:		0003-Fix-finding-recent-versions-of-GStreamer.patch
+Patch2:		0004-Fix-build-on-Gentoo-with-recent-GStreamer-1.0.patch
 BuildRequires:	automoc4
 BuildRequires:	cmake
 BuildRequires:	imagemagick
@@ -96,14 +97,15 @@ cp -a Qt4 Qt5
 %build
 pushd Qt4
 %cmake -DCMAKE_BUILD_TYPE:STRING="Release" \
-	-DUSE_INSTALL_PLUGIN:BOOL=ON \
+    -DUSE_INSTALL_PLUGIN:BOOL=ON \
     -DPHONON_BUILD_PHONON4QT5:BOOL=OFF
+
 %make
 popd
 
 pushd Qt5
 %cmake_qt5 -DCMAKE_BUILD_TYPE:STRING="Release" \
-	-DUSE_INSTALL_PLUGIN:BOOL=ON \
+    -DUSE_INSTALL_PLUGIN:BOOL=ON \
     -DPHONON_BUILD_PHONON4QT5:BOOL=ON
 
 %make
