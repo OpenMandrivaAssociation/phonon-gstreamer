@@ -1,15 +1,12 @@
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
-Version:	4.8.2
-Release:	5
+Version:	4.9.0
+Release:	1
 Epoch:		2
 License:	LGPLv2.1+
 Group:		Sound
 Url:		http://phonon.kde.org/
-Source0:	ftp://ftp.kde.org/pub/kde/stable/phonon/phonon-backend-gstreamer/%{version}/src/phonon-backend-gstreamer-%{version}.tar.xz
-# (tpg) patches from upstream git
-Patch1:		0003-Fix-finding-recent-versions-of-GStreamer.patch
-Patch2:		0004-Fix-build-on-Gentoo-with-recent-GStreamer-1.0.patch
+Source0:	http://download.kde.org/stable/phonon/phonon-backend-gstreamer/%{version}/phonon-backend-gstreamer-%{version}.tar.xz
 BuildRequires:	automoc4
 BuildRequires:	cmake
 BuildRequires:	imagemagick
@@ -87,7 +84,7 @@ GStreamer backend to Phonon (Qt5).
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn phonon-backend-gstreamer-%{version}
+%setup -qn phonon-gstreamer-%{version}
 %apply_patches
 
 mkdir Qt4
