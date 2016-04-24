@@ -28,6 +28,7 @@ BuildRequires:	pkgconfig(phonon)
 BuildRequires:	pkgconfig(phonon4qt5)
 BuildRequires:	pkgconfig(Qt5OpenGL)
 BuildRequires:	pkgconfig(Qt5Core)
+BuildRequires:	pkgconfig(Qt5X11Extras)
 BuildRequires:	cmake(ECM)
 Requires:	phonon-gstreamer-common
 Requires:	gstreamer1.0-libav
