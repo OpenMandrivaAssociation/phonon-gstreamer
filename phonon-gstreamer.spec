@@ -1,13 +1,17 @@
+%bcond_with qt4
+
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
 Version:	4.9.0
-Release:	3
-Epoch:		2
+Release:	4
 License:	LGPLv2.1+
 Group:		Sound
 Url:		http://phonon.kde.org/
 Source0:	http://download.kde.org/stable/phonon/phonon-backend-gstreamer/%{version}/phonon-backend-gstreamer-%{version}.tar.xz
+%if %{with qt4}
 BuildRequires:	automoc4
+BuildRequires:	pkgconfig(phonon)
+%endif
 BuildRequires:	imagemagick
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(glib-2.0)
@@ -23,12 +27,12 @@ BuildRequires:	pkgconfig(gstreamer-rtsp-1.0)
 BuildRequires:	pkgconfig(gstreamer-sdp-1.0)
 BuildRequires:	pkgconfig(gstreamer-tag-1.0)
 BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:	pkgconfig(phonon)
 BuildRequires:	pkgconfig(phonon4qt5)
 BuildRequires:	pkgconfig(Qt5OpenGL)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5X11Extras)
 BuildRequires:	cmake(ECM)
+BuildRequires:	ninja
 Requires:	phonon-gstreamer-common
 Requires:	gstreamer1.0-libav
 Requires:	gstreamer1.0-pulse
@@ -43,9 +47,11 @@ Provides:	phonon-backend
 %description
 GStreamer backend to Phonon (Qt4).
 
+%if %{with qt4}
 %files
 %{_libdir}/kde4/plugins/phonon_backend/phonon_gstreamer.so
 %{_datadir}/kde4/services/phononbackends/gstreamer.desktop
+%endif
 
 #----------------------------------------------------------------------------
 
@@ -88,11 +94,14 @@ GStreamer backend to Phonon (Qt5).
 %setup -qn phonon-gstreamer-%{version}
 %apply_patches
 
+%if %{with qt4}
 mkdir Qt4
 mv `ls -1 |grep -v Qt4` Qt4
 cp -a Qt4 Qt5
+%endif
 
 %build
+%if %{with qt4}
 pushd Qt4
 %cmake -DCMAKE_BUILD_TYPE:STRING="Release" \
     -DUSE_INSTALL_PLUGIN:BOOL=ON \
@@ -102,14 +111,19 @@ pushd Qt4
 popd
 
 pushd Qt5
+%endif
 %cmake_qt5 -DCMAKE_BUILD_TYPE:STRING="Release" \
-    -DUSE_INSTALL_PLUGIN:BOOL=ON \
-    -DPHONON_BUILD_PHONON4QT5:BOOL=ON
+	-DUSE_INSTALL_PLUGIN:BOOL=ON \
+	-DPHONON_BUILD_PHONON4QT5:BOOL=ON \
+	-G Ninja
 
-%make
-popd
+%ninja_build
 
 %install
+%if %{with qt4}
 %makeinstall_std -C Qt4/build
 
 %makeinstall_std -C Qt5/build
+%else
+%ninja_install -C build
+%endif
