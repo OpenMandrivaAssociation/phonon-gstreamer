@@ -36,7 +36,11 @@ BuildRequires:	ninja
 Requires:	phonon-gstreamer-common
 Requires:	gstreamer1.0-libav
 Requires:	gstreamer1.0-pulse
+%ifnarch %{arm}
+# ARM doesn't have -plugins-bad yet due to
+# unexplained build failure
 Requires:	gstreamer1.0-plugins-bad
+%endif
 Requires:	gstreamer1.0-plugins-base
 Requires:	gstreamer1.0-plugins-good
 Requires:	gstreamer1.0-plugins-ugly
@@ -74,7 +78,11 @@ Group:		Sound
 Requires:	phonon-gstreamer-common
 Requires:	gstreamer1.0-libav
 Requires:	gstreamer1.0-pulse
+%ifnarch %{arm}
+# ARM doesn't have -plugins-bad yet due to
+# unexplained build failure
 Requires:	gstreamer1.0-plugins-bad
+%endif
 Requires:	gstreamer1.0-plugins-base
 Requires:	gstreamer1.0-plugins-good
 Requires:	gstreamer1.0-plugins-ugly
