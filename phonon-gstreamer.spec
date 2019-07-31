@@ -2,8 +2,8 @@
 
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
-Version:	4.9.0
-Release:	5
+Version:	4.9.1
+Release:	1
 License:	LGPLv2.1+
 Group:		Sound
 Url:		http://phonon.kde.org/
@@ -93,7 +93,7 @@ Provides:	phonon4qt5-backend
 %description -n phonon4qt5-gstreamer
 GStreamer backend to Phonon (Qt5).
 
-%files -n phonon4qt5-gstreamer
+%files -n phonon4qt5-gstreamer -f %{name}.lang
 %{_qt5_plugindir}/phonon4qt5_backend/phonon_gstreamer.so
 
 #----------------------------------------------------------------------------
@@ -135,3 +135,8 @@ pushd Qt5
 %else
 %ninja_install -C build
 %endif
+
+find %{buildroot}%{_datadir}/locale -name "*.qm" |while read r; do
+	L=`echo $r |rev |cut -d/ -f3 |rev`
+	echo "%%lang($L) %%{_datadir}/locale/$L/LC_MESSAGES/*.qm" >>%{name}.lang
+done
