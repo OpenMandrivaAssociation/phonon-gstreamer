@@ -2,7 +2,7 @@
 
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
-Version:	4.9.1
+Version:	4.10.0
 Release:	1
 License:	LGPLv2.1+
 Group:		Sound
@@ -99,7 +99,7 @@ GStreamer backend to Phonon (Qt5).
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn phonon-gstreamer-%{version}
+%setup -qn phonon-backend-gstreamer-%{version}
 %apply_patches
 
 %if %{with qt4}
@@ -120,7 +120,7 @@ popd
 
 pushd Qt5
 %endif
-%cmake_qt5 -DCMAKE_BUILD_TYPE:STRING="Release" \
+%cmake_kde5 -DCMAKE_BUILD_TYPE:STRING="Release" \
 	-DUSE_INSTALL_PLUGIN:BOOL=ON \
 	-DPHONON_BUILD_PHONON4QT5:BOOL=ON \
 	-G Ninja
