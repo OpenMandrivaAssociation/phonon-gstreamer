@@ -100,7 +100,7 @@ GStreamer backend to Phonon (Qt5).
 
 %prep
 %setup -qn phonon-backend-gstreamer-%{version}
-%apply_patches
+%autopatch -p1
 
 %if %{with qt4}
 mkdir Qt4
