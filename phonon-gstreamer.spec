@@ -3,7 +3,7 @@
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
 Version:	4.10.0
-Release:	2
+Release:	3
 License:	LGPLv2.1+
 Group:		Sound
 Url:		http://phonon.kde.org/
@@ -34,8 +34,6 @@ BuildRequires:	pkgconfig(Qt5X11Extras)
 BuildRequires:	cmake(ECM)
 BuildRequires:	ninja
 Requires:	phonon-gstreamer-common
-# For gst-plugin-scanner
-Requires:	gstreamer-tools
 Requires:	gstreamer1.0-libav
 Requires:	gstreamer1.0-pulse
 %ifnarch %{arm}
@@ -65,6 +63,8 @@ GStreamer backend to Phonon (Qt4).
 Summary:	Files used by both Qt4 and Qt5 versions of Phonon GStreamer backend
 Group:		Sound
 Conflicts:	phonon-gstreamer < 2:4.8.2-3
+# For gst-plugin-scanner
+Requires:	gstreamer-tools
 
 %description common
 Files used by both Qt4 and Qt5 versions of Phonon GStreamer backend.
