@@ -3,15 +3,14 @@
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
 Version:	4.10.0
-Release:	7
+Release:	8
 License:	LGPLv2.1+
 Group:		Sound
 Url:		http://phonon.kde.org/
-Source0:	http://download.kde.org/stable/phonon/phonon-backend-gstreamer/%{version}/phonon-backend-gstreamer-%{version}.tar.xz
-%if %{with qt4}
-BuildRequires:	automoc4
-BuildRequires:	pkgconfig(phonon)
-%endif
+Source0:	phonon-gstreamer-%{version}.tar.xz
+#Source0:	http://download.kde.org/stable/phonon/phonon-backend-gstreamer/%{version}/phonon-backend-gstreamer-%{version}.tar.xz
+Patch0:		port-to-qt6.patch
+
 BuildRequires:	imagemagick
 BuildRequires:	qmake5
 BuildRequires:	pkgconfig(glib-2.0)
@@ -48,15 +47,6 @@ Requires:	gstreamer1.0-soup
 Suggests:	gstreamer1.0-ffmpeg
 Provides:	phonon-backend
 
-%description
-GStreamer backend to Phonon (Qt4).
-
-%if %{with qt4}
-%files
-%{_libdir}/kde4/plugins/phonon_backend/phonon_gstreamer.so
-%{_datadir}/kde4/services/phononbackends/gstreamer.desktop
-%endif
-
 #----------------------------------------------------------------------------
 
 %package common
@@ -67,7 +57,7 @@ Conflicts:	phonon-gstreamer < 2:4.8.2-3
 Requires:	gstreamer-tools
 
 %description common
-Files used by both Qt4 and Qt5 versions of Phonon GStreamer backend.
+Files used by both Qt6 and Qt5 versions of Phonon GStreamer backend.
 
 %files common
 %{_iconsdir}/hicolor/*/apps/phonon-gstreamer.*
@@ -101,42 +91,20 @@ GStreamer backend to Phonon (Qt5).
 #----------------------------------------------------------------------------
 
 %prep
-%setup -qn phonon-backend-gstreamer-%{version}
-%autopatch -p1
-
-%if %{with qt4}
-mkdir Qt4
-mv `ls -1 |grep -v Qt4` Qt4
-cp -a Qt4 Qt5
-%endif
+%autosetup -n phonon-gstreamer-%{version} -p1
 
 %build
-%if %{with qt4}
-pushd Qt4
-%cmake -DCMAKE_BUILD_TYPE:STRING="Release" \
-    -DUSE_INSTALL_PLUGIN:BOOL=ON \
-    -DPHONON_BUILD_PHONON4QT5:BOOL=OFF
+%cmake \
+	-DCMAKE_BUILD_TYPE:STRING="Release" \
+    	-DUSE_INSTALL_PLUGIN:BOOL=ON \
+    	-DPHONON_BUILD_PHONON4QT5:BOOL=OFF \
+     	-DQT_MAJOR_VERSION=6 
 
-%make
-popd
+%make_build
 
-pushd Qt5
-%endif
-%cmake_kde5 -DCMAKE_BUILD_TYPE:STRING="Release" \
-	-DUSE_INSTALL_PLUGIN:BOOL=ON \
-	-DPHONON_BUILD_PHONON4QT5:BOOL=ON \
-	-G Ninja
-
-%ninja_build
 
 %install
-%if %{with qt4}
-%makeinstall_std -C Qt4/build
-
-%makeinstall_std -C Qt5/build
-%else
-%ninja_install -C build
-%endif
+%make_install -C build
 
 find %{buildroot}%{_datadir}/locale -name "*.qm" |while read r; do
 	L=`echo $r |rev |cut -d/ -f3 |rev`
