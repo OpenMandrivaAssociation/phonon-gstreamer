@@ -35,6 +35,7 @@ BuildRequires:	pkgconfig(Qt6OpenGL)
 BuildRequires:  pkgconfig(Qt6OpenGLWidgets)
 BuildRequires:  pkgconfig(Qt6Widgets)
 BuildRequires:	pkgconfig(Qt6Core)
+BuildRequires:  cmake(Qt6XcbQpaPrivate)
 BuildRequires:	cmake(ECM)
 BuildRequires:	ninja
 Requires:	phonon-gstreamer-common
