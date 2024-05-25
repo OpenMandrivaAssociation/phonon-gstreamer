@@ -32,6 +32,7 @@ BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5X11Extras)
 BuildRequires:  pkgconfig(Qt6Gui)
 BuildRequires:	pkgconfig(Qt6OpenGL)
+BuildRequires:  pkgconfig(Qt6OpenGLWidgets)
 BuildRequires:	pkgconfig(Qt6Core)
 BuildRequires:	cmake(ECM)
 BuildRequires:	ninja
