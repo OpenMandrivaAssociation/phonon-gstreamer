@@ -30,6 +30,8 @@ BuildRequires:	pkgconfig(phonon4qt5)
 BuildRequires:	pkgconfig(Qt5OpenGL)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5X11Extras)
+BuildRequires:	pkgconfig(Qt6OpenGL)
+BuildRequires:	pkgconfig(Qt6Core)
 BuildRequires:	cmake(ECM)
 BuildRequires:	ninja
 Requires:	phonon-gstreamer-common
