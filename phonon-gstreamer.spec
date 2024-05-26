@@ -77,7 +77,7 @@ Requires:	gstreamer-tools
 %description common
 Files used by both Qt6 and Qt5 versions of Phonon GStreamer backend.
 
-%files common
+%files common -f %{name}.lang
 %{_iconsdir}/hicolor/*/apps/phonon-gstreamer.*
 
 #----------------------------------------------------------------------------
@@ -99,7 +99,7 @@ Provides:	phonon-backend
 %description -n phonon4qt5-gstreamer
 GStreamer backend to Phonon (Qt5).
 
-%files -n phonon4qt5-gstreamer -f %{name}.lang
+%files -n phonon4qt5-gstreamer
 %{_libdir}/plugins/phonon4qt5_backend/phonon_gstreamer.so
 %endif
 #----------------------------------------------------------------------------
@@ -121,7 +121,7 @@ Provides:	phonon-backend
 %description -n phonon4qt6-gstreamer
 GStreamer backend to Phonon (Qt6).
 
-%files -n phonon4qt5-gstreamer -f %{name}.lang
+%files -n phonon4qt5-gstreamer
 %{_libdir}/plugins/phonon4qt6_backend/phonon_gstreamer.so
 %endif
 #----------------------------------------------------------------------------
