@@ -42,6 +42,8 @@ BuildRequires:  cmake(Qt6XcbQpaPrivate)
 BuildRequires:  cmake(Phonon4Qt6)
 BuildRequires:	cmake(ECM)
 BuildRequires:	ninja
+BuildRequires:	pkgconfig(xkbcommon-x11)
+
 Requires:	phonon-gstreamer-common
 Requires:	gstreamer1.0-libav
 Requires:	gstreamer1.0-pulse
