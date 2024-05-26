@@ -106,7 +106,7 @@ Provides:	phonon4qt5-backend
 GStreamer backend to Phonon (Qt5).
 
 %files -n phonon4qt5-gstreamer -f %{name}.lang
-%{_qt5_plugindir}/phonon4qt5_backend/phonon_gstreamer.so
+#{_qt5_plugindir}/phonon4qt5_backend/phonon_gstreamer.so
 
 #----------------------------------------------------------------------------
 
