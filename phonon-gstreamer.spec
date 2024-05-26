@@ -1,8 +1,5 @@
-%define _disable_ld_no_undefined 1
-%define _disable_lto 1
 %bcond_without qt5
 %bcond_without qt6
-
 
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
@@ -10,9 +7,10 @@ Version:	4.10.0
 Release:	8
 License:	LGPLv2.1+
 Group:		Sound
-Url:		http://phonon.kde.org/
+Url:		https://phonon.kde.org/
 Source0:	phonon-gstreamer-%{version}.tar.xz
-#Source0:	http://download.kde.org/stable/phonon/phonon-backend-gstreamer/%{version}/phonon-backend-gstreamer-%{version}.tar.xz
+#Source0:	https://download.kde.org/stable/phonon/phonon-backend-gstreamer/%{version}/phonon-backend-gstreamer-%{version}.tar.xz
+# Port it to Qt6. Patch from https://aur.archlinux.org/cgit/aur.git/tree/qt6_build_patch.patch?h=phonon-qt6-gstreamer-git
 Patch0:		port-to-qt6.patch
 
 BuildRequires:	imagemagick
@@ -58,17 +56,11 @@ BuildRequires:	pkgconfig(xkbcommon-x11)
 Requires:	phonon-gstreamer-common
 Requires:	gstreamer1.0-libav
 Requires:	gstreamer1.0-pulse
-%ifnarch %{arm}
-# ARM doesn't have -plugins-bad yet due to
-# unexplained build failure
 Requires:	gstreamer1.0-plugins-bad
-%endif
 Requires:	gstreamer1.0-plugins-base
 Requires:	gstreamer1.0-plugins-good
 Requires:	gstreamer1.0-plugins-ugly
 Requires:	gstreamer1.0-soup
-Suggests:	gstreamer1.0-ffmpeg
-Provides:	phonon-backend
 
 %description
 GStreamer backend to Phonon (Qt6 and Qt5).
@@ -89,31 +81,49 @@ Files used by both Qt6 and Qt5 versions of Phonon GStreamer backend.
 %{_iconsdir}/hicolor/*/apps/phonon-gstreamer.*
 
 #----------------------------------------------------------------------------
-
+%if %{with qt5}
 %package -n phonon4qt5-gstreamer
 Summary:	GStreamer backend to Phonon (Qt5)
 Group:		Sound
 Requires:	phonon-gstreamer-common
 Requires:	gstreamer1.0-libav
 Requires:	gstreamer1.0-pulse
-%ifnarch %{arm}
-# ARM doesn't have -plugins-bad yet due to
-# unexplained build failure
 Requires:	gstreamer1.0-plugins-bad
-%endif
 Requires:	gstreamer1.0-plugins-base
 Requires:	gstreamer1.0-plugins-good
 Requires:	gstreamer1.0-plugins-ugly
 Requires:	gstreamer1.0-soup
-Suggests:	gstreamer1.0-ffmpeg
 Provides:	phonon4qt5-backend
+Provides:	phonon-backend
 
 %description -n phonon4qt5-gstreamer
 GStreamer backend to Phonon (Qt5).
 
 %files -n phonon4qt5-gstreamer -f %{name}.lang
-#{_qt5_plugindir}/phonon4qt5_backend/phonon_gstreamer.so
+%{_libdir}/plugins/phonon4qt5_backend/phonon_gstreamer.so
+%endif
+#----------------------------------------------------------------------------
+%if %{with qt6}
+%package -n phonon4qt6-gstreamer
+Summary:	GStreamer backend to Phonon (Qt6)
+Group:		Sound
+Requires:	phonon-gstreamer-common
+Requires:	gstreamer1.0-libav
+Requires:	gstreamer1.0-pulse
+Requires:	gstreamer1.0-plugins-bad
+Requires:	gstreamer1.0-plugins-base
+Requires:	gstreamer1.0-plugins-good
+Requires:	gstreamer1.0-plugins-ugly
+Requires:	gstreamer1.0-soup
+Provides:	phonon4qt6-backend
+Provides:	phonon-backend
 
+%description -n phonon4qt6-gstreamer
+GStreamer backend to Phonon (Qt6).
+
+%files -n phonon4qt5-gstreamer -f %{name}.lang
+%{_libdir}/plugins/phonon4qt6_backend/phonon_gstreamer.so
+%endif
 #----------------------------------------------------------------------------
 
 %prep
