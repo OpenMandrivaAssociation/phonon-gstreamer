@@ -101,6 +101,7 @@ GStreamer backend to Phonon (Qt5).
 
 %files -n phonon4qt5-gstreamer
 %{_libdir}/plugins/phonon4qt5_backend/phonon_gstreamer.so
+%{_libdir}/plugins/phonon4qt5_backend/phonon_gstreamer.so
 %endif
 #----------------------------------------------------------------------------
 %if %{with qt6}
