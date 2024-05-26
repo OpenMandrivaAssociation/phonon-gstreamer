@@ -1,6 +1,8 @@
 %define _disable_ld_no_undefined 1
 %define _disable_lto 1
 %bcond_without qt5
+%bcond_without qt6
+
 
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
@@ -28,10 +30,13 @@ BuildRequires:	pkgconfig(gstreamer-rtsp-1.0)
 BuildRequires:	pkgconfig(gstreamer-sdp-1.0)
 BuildRequires:	pkgconfig(gstreamer-tag-1.0)
 BuildRequires:	pkgconfig(libxml-2.0)
+%if %{with qt5}
 BuildRequires:	pkgconfig(phonon4qt5)
 BuildRequires:	pkgconfig(Qt5OpenGL)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5X11Extras)
+%endif
+%if %{with qt6}
 BuildRequires:  pkgconfig(Qt6Gui)
 BuildRequires:	pkgconfig(Qt6OpenGL)
 BuildRequires:  pkgconfig(Qt6OpenGLWidgets)
@@ -41,6 +46,7 @@ BuildRequires:	qt6-qtbase-theme-gtk3
 BuildRequires:  cmake(Qt6LinguistTools)
 BuildRequires:  cmake(Qt6XcbQpaPrivate)
 BuildRequires:  cmake(Phonon4Qt6)
+%endif
 BuildRequires:	cmake(ECM)
 BuildRequires:	ninja
 BuildRequires:	pkgconfig(xcb-cursor)
@@ -115,17 +121,15 @@ GStreamer backend to Phonon (Qt5).
 
 %build
 %if %{with qt5}
-pushd Qt5
-%cmake_kde5 -DCMAKE_BUILD_TYPE:STRING="Release" \
+export CMAKE_BUILD_DIR=build-qt5
+%cmake_qt5 -DCMAKE_BUILD_TYPE:STRING="Release" \
 	-DUSE_INSTALL_PLUGIN:BOOL=ON \
-	-DPHONON_BUILD_PHONON4QT5:BOOL=ON \
-	-G Ninja
-
-%ninja_build
-popd
-
-pushd Qt6
+	-DPHONON_BUILD_PHONON4QT5:BOOL=ON
+%make_build
+cd .. 
 %endif
+%if %{with qt6}
+export CMAKE_BUILD_DIR=build-qt6
 %cmake \
 	-DCMAKE_BUILD_TYPE:STRING="Release" \
     	-DUSE_INSTALL_PLUGIN:BOOL=ON \
@@ -133,14 +137,17 @@ pushd Qt6
      	-DQT_MAJOR_VERSION=6 
 
 %make_build
-
+cd ..
+%endif
 
 %install
 %if %{with qt5}
-%make_install -C Qt5/build
-%else
-%make_install -C C Qt6/build
+%make_install -C build
 %endif
+%if %{with qt6}
+%make_install -C build-qt6
+%endif
+
 find %{buildroot}%{_datadir}/locale -name "*.qm" |while read r; do
 	L=`echo $r |rev |cut -d/ -f3 |rev`
 	echo "%%lang($L) %%{_datadir}/locale/$L/LC_MESSAGES/*.qm" >>%{name}.lang
