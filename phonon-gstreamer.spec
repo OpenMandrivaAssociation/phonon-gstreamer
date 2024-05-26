@@ -1,7 +1,7 @@
 %bcond_without qt5
 %bcond_without qt6
 
-Summary:	GStreamer backend to Phonon (Qt4)
+Summary:	GStreamer backend to Phonon (Qt5 and Qt6)
 Name:		phonon-gstreamer
 Version:	4.10.0
 Release:	8
@@ -68,7 +68,7 @@ GStreamer backend to Phonon (Qt6 and Qt5).
 #----------------------------------------------------------------------------
 
 %package common
-Summary:	Files used by both Qt4 and Qt5 versions of Phonon GStreamer backend
+Summary:	Files used by both Qt6 and Qt5 versions of Phonon GStreamer backend
 Group:		Sound
 Conflicts:	phonon-gstreamer < 2:4.8.2-3
 # For gst-plugin-scanner
@@ -101,7 +101,6 @@ GStreamer backend to Phonon (Qt5).
 
 %files -n phonon4qt5-gstreamer
 %{_libdir}/plugins/phonon4qt5_backend/phonon_gstreamer.so
-%{_libdir}/plugins/phonon4qt5_backend/phonon_gstreamer.so
 %endif
 #----------------------------------------------------------------------------
 %if %{with qt6}
@@ -122,7 +121,7 @@ Provides:	phonon-backend
 %description -n phonon4qt6-gstreamer
 GStreamer backend to Phonon (Qt6).
 
-%files -n phonon4qt5-gstreamer
+%files -n phonon4qt6-gstreamer
 %{_libdir}/plugins/phonon4qt6_backend/phonon_gstreamer.so
 %endif
 #----------------------------------------------------------------------------
