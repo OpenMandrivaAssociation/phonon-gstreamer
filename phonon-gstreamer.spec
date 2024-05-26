@@ -1,4 +1,5 @@
 %define _disable_ld_no_undefined 1
+%define _disable_lto 1
 %bcond_with qt4
 
 Summary:	GStreamer backend to Phonon (Qt4)
