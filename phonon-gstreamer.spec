@@ -46,6 +46,7 @@ BuildRequires:	ninja
 BuildRequires:	pkgconfig(xcb-cursor)
 BuildRequires:	pkgconfig(xcb-icccm)
 BuildRequires:	pkgconfig(xcb-keysyms)
+BuildRequires:	pkgconfig(xcb-util)
 BuildRequires:	pkgconfig(xkbcommon-x11)
 
 Requires:	phonon-gstreamer-common
@@ -62,6 +63,9 @@ Requires:	gstreamer1.0-plugins-ugly
 Requires:	gstreamer1.0-soup
 Suggests:	gstreamer1.0-ffmpeg
 Provides:	phonon-backend
+
+%description
+GStreamer backend to Phonon (Qt6 and Qt5).
 
 #----------------------------------------------------------------------------
 
