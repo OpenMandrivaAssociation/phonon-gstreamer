@@ -45,6 +45,7 @@ BuildRequires:	cmake(ECM)
 BuildRequires:	ninja
 BuildRequires:	pkgconfig(xcb-cursor)
 BuildRequires:	pkgconfig(xcb-icccm)
+BuildRequires:	pkgconfig(xcb-keysyms)
 BuildRequires:	pkgconfig(xkbcommon-x11)
 
 Requires:	phonon-gstreamer-common
