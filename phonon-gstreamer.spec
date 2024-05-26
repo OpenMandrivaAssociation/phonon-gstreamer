@@ -140,7 +140,7 @@ pushd Qt6
 %make_install -C Qt5/build
 %else
 %make_install -C C Qt6/build
-
+%endif
 find %{buildroot}%{_datadir}/locale -name "*.qm" |while read r; do
 	L=`echo $r |rev |cut -d/ -f3 |rev`
 	echo "%%lang($L) %%{_datadir}/locale/$L/LC_MESSAGES/*.qm" >>%{name}.lang
