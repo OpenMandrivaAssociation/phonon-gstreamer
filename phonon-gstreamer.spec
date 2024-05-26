@@ -1,6 +1,6 @@
 %define _disable_ld_no_undefined 1
 %define _disable_lto 1
-%bcond_with qt4
+%bcond_without qt5
 
 Summary:	GStreamer backend to Phonon (Qt4)
 Name:		phonon-gstreamer
@@ -114,6 +114,18 @@ GStreamer backend to Phonon (Qt5).
 %autosetup -n phonon-gstreamer-%{version} -p1
 
 %build
+%if %{with qt5}
+pushd Qt5
+%cmake_kde5 -DCMAKE_BUILD_TYPE:STRING="Release" \
+	-DUSE_INSTALL_PLUGIN:BOOL=ON \
+	-DPHONON_BUILD_PHONON4QT5:BOOL=ON \
+	-G Ninja
+
+%ninja_build
+popd
+
+pushd Qt6
+%endif
 %cmake \
 	-DCMAKE_BUILD_TYPE:STRING="Release" \
     	-DUSE_INSTALL_PLUGIN:BOOL=ON \
@@ -124,7 +136,10 @@ GStreamer backend to Phonon (Qt5).
 
 
 %install
-%make_install -C build
+%if %{with qt5}
+%make_install -C Qt5/build
+%else
+%make_install -C C Qt6/build
 
 find %{buildroot}%{_datadir}/locale -name "*.qm" |while read r; do
 	L=`echo $r |rev |cut -d/ -f3 |rev`
