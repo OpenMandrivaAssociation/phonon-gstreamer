@@ -42,6 +42,7 @@ BuildRequires:  cmake(Qt6XcbQpaPrivate)
 BuildRequires:  cmake(Phonon4Qt6)
 BuildRequires:	cmake(ECM)
 BuildRequires:	ninja
+BuildRequires:	pkgconfig(xcb-cursor)
 BuildRequires:	pkgconfig(xkbcommon-x11)
 
 Requires:	phonon-gstreamer-common
