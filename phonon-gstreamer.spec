@@ -4,7 +4,7 @@
 Summary:	GStreamer backend to Phonon (Qt5 and Qt6)
 Name:		phonon-gstreamer
 Version:	4.10.0
-Release:	8
+Release:	9
 License:	LGPLv2.1+
 Group:		Sound
 Url:		https://phonon.kde.org/
@@ -93,6 +93,7 @@ Requires:	gstreamer1.0-plugins-base
 Requires:	gstreamer1.0-plugins-good
 Requires:	gstreamer1.0-plugins-ugly
 Requires:	gstreamer1.0-soup
+Requires:	gstreamer1.0-qt5
 Provides:	phonon4qt5-backend
 Provides:	phonon-backend
 
@@ -115,6 +116,7 @@ Requires:	gstreamer1.0-plugins-base
 Requires:	gstreamer1.0-plugins-good
 Requires:	gstreamer1.0-plugins-ugly
 Requires:	gstreamer1.0-soup
+Requires:	gstreamer1.0-plugins-good-Qt6
 Provides:	phonon4qt6-backend
 Provides:	phonon-backend
 
