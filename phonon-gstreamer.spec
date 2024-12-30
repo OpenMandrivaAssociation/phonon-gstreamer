@@ -4,7 +4,7 @@
 Summary:	GStreamer backend to Phonon (Qt5 and Qt6)
 Name:		phonon-gstreamer
 Version:	4.10.0
-Release:	12
+Release:	14
 License:	LGPLv2.1+
 Group:		Sound
 Url:		https://phonon.kde.org/
@@ -101,7 +101,7 @@ Provides:	phonon-backend
 GStreamer backend to Phonon (Qt5).
 
 %files -n phonon4qt5-gstreamer
-%{_libdir}/plugins/phonon4qt5_backend/phonon_gstreamer.so
+%{_libdir}/qt5/plugins/phonon4qt5_backend/phonon_gstreamer.so
 %endif
 #----------------------------------------------------------------------------
 %if %{with qt6}
@@ -124,21 +124,20 @@ Provides:	phonon-backend
 GStreamer backend to Phonon (Qt6).
 
 %files -n phonon4qt6-gstreamer
-%{_libdir}/plugins/phonon4qt6_backend/phonon_gstreamer.so
+%{_libdir}/qt6/plugins/phonon4qt6_backend/phonon_gstreamer.so
 %endif
 #----------------------------------------------------------------------------
 
 %prep
 %autosetup -n phonon-gstreamer-%{version} -p1
 
-%build
 %if %{with qt5}
-export CMAKE_BUILD_DIR=build-qt5
-%cmake_qt5 -DCMAKE_BUILD_TYPE:STRING="Release" \
+export CMAKE_BUILD_DIR=build
+%cmake_kde5 -DCMAKE_BUILD_TYPE:STRING="Release" \
 	-DUSE_INSTALL_PLUGIN:BOOL=ON \
 	-DPHONON_BUILD_PHONON4QT5:BOOL=ON
-%make_build
-cd .. 
+cd ..
+
 %endif
 %if %{with qt6}
 export CMAKE_BUILD_DIR=build-qt6
@@ -146,18 +145,27 @@ export CMAKE_BUILD_DIR=build-qt6
 	-DCMAKE_BUILD_TYPE:STRING="Release" \
     	-DUSE_INSTALL_PLUGIN:BOOL=ON \
     	-DPHONON_BUILD_PHONON4QT5:BOOL=OFF \
-     	-DQT_MAJOR_VERSION=6 
-
-%make_build
+     	-DQT_MAJOR_VERSION=6 \
+      	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
+      	-G Ninja
 cd ..
+%endif
+
+%build
+%if %{with qt5}
+%ninja_build -C build
+%endif
+
+%if %{with qt6}
+%ninja_build -C build-qt6
 %endif
 
 %install
 %if %{with qt5}
-%make_install -C build
+%ninja_install -C build
 %endif
 %if %{with qt6}
-%make_install -C build-qt6
+%ninja_install -C build-qt6
 %endif
 
 find %{buildroot}%{_datadir}/locale -name "*.qm" |while read r; do
