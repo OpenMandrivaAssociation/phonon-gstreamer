@@ -131,14 +131,13 @@ GStreamer backend to Phonon (Qt6).
 %prep
 %autosetup -n phonon-gstreamer-%{version} -p1
 
-%build
 %if %{with qt5}
 export CMAKE_BUILD_DIR=build
 %cmake_kde5 -DCMAKE_BUILD_TYPE:STRING="Release" \
 	-DUSE_INSTALL_PLUGIN:BOOL=ON \
 	-DPHONON_BUILD_PHONON4QT5:BOOL=ON
-%ninja_build -C build
-cd .. 
+cd ..
+
 %endif
 %if %{with qt6}
 export CMAKE_BUILD_DIR=build-qt6
@@ -148,9 +147,16 @@ export CMAKE_BUILD_DIR=build-qt6
     	-DPHONON_BUILD_PHONON4QT5:BOOL=OFF \
      	-DQT_MAJOR_VERSION=6 \
       	-G Ninja
-
-%ninja_build -C build-qt6
 cd ..
+%endif
+
+%build
+%if %{with qt5}
+%ninja_build -C build
+%endif
+
+%if %{with qt6}
+%ninja_build -C build-qt6
 %endif
 
 %install
