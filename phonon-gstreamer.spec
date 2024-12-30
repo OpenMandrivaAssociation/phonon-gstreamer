@@ -133,11 +133,11 @@ GStreamer backend to Phonon (Qt6).
 
 %build
 %if %{with qt5}
-export CMAKE_BUILD_DIR=build-qt5
-%cmake_qt5 -DCMAKE_BUILD_TYPE:STRING="Release" \
+export CMAKE_BUILD_DIR=build
+%cmake_kde5 -DCMAKE_BUILD_TYPE:STRING="Release" \
 	-DUSE_INSTALL_PLUGIN:BOOL=ON \
 	-DPHONON_BUILD_PHONON4QT5:BOOL=ON
-%make_build
+%ninja_build -C build
 cd .. 
 %endif
 %if %{with qt6}
@@ -146,18 +146,19 @@ export CMAKE_BUILD_DIR=build-qt6
 	-DCMAKE_BUILD_TYPE:STRING="Release" \
     	-DUSE_INSTALL_PLUGIN:BOOL=ON \
     	-DPHONON_BUILD_PHONON4QT5:BOOL=OFF \
-     	-DQT_MAJOR_VERSION=6 
+     	-DQT_MAJOR_VERSION=6 \
+      	-G Ninja
 
-%make_build
+%ninja_build -C build-qt6
 cd ..
 %endif
 
 %install
 %if %{with qt5}
-%make_install -C build
+%ninja_install -C build
 %endif
 %if %{with qt6}
-%make_install -C build-qt6
+%ninja_install -C build-qt6
 %endif
 
 find %{buildroot}%{_datadir}/locale -name "*.qm" |while read r; do
