@@ -146,6 +146,7 @@ export CMAKE_BUILD_DIR=build-qt6
     	-DUSE_INSTALL_PLUGIN:BOOL=ON \
     	-DPHONON_BUILD_PHONON4QT5:BOOL=OFF \
      	-DQT_MAJOR_VERSION=6 \
+      	-DKDE_INSTALL_USE_QT_SYS_PATHS:BOOL=ON \
       	-G Ninja
 cd ..
 %endif
