@@ -4,7 +4,7 @@
 Summary:	GStreamer backend to Phonon (Qt5 and Qt6)
 Name:		phonon-gstreamer
 Version:	4.10.0
-Release:	14
+Release:	15
 License:	LGPLv2.1+
 Group:		Sound
 Url:		https://phonon.kde.org/
@@ -40,7 +40,6 @@ BuildRequires:	pkgconfig(Qt6OpenGL)
 BuildRequires:  pkgconfig(Qt6OpenGLWidgets)
 BuildRequires:  pkgconfig(Qt6Widgets)
 BuildRequires:	pkgconfig(Qt6Core)
-BuildRequires:	qt6-qtbase-theme-gtk3
 BuildRequires:  cmake(Qt6LinguistTools)
 BuildRequires:  cmake(Qt6XcbQpaPrivate)
 BuildRequires:  cmake(Phonon4Qt6)
