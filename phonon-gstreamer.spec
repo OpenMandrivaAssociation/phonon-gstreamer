@@ -29,6 +29,7 @@ BuildRequires:	pkgconfig(gstreamer-sdp-1.0)
 BuildRequires:	pkgconfig(gstreamer-tag-1.0)
 BuildRequires:	pkgconfig(libxml-2.0)
 %if %{with qt5}
+BuildRequires:	cmake(Qt5LinguistTools)
 BuildRequires:	pkgconfig(phonon4qt5)
 BuildRequires:	pkgconfig(Qt5OpenGL)
 BuildRequires:	pkgconfig(Qt5Core)
