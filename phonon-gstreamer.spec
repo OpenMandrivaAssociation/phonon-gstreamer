@@ -34,7 +34,6 @@ BuildRequires:	pkgconfig(phonon4qt5)
 BuildRequires:	pkgconfig(Qt5OpenGL)
 BuildRequires:	pkgconfig(Qt5Core)
 BuildRequires:	pkgconfig(Qt5X11Extras)
-BuildRequires:	pkgconfig(Qt5LinguistTools)
 %endif
 %if %{with qt6}
 BuildRequires:  pkgconfig(Qt6Gui)
